@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using SpearPay.Gateway;
 using System;
 using System.Linq;
 
@@ -55,6 +56,17 @@ namespace SpearPay
                 services.AddTransient<IGateway, T>(provider => gateway);
             }
 
+            return services;
+        }
+
+        /// <summary> 添加Spear支付组件,并指定单个支付网关 </summary>
+        /// <param name="services"></param>
+        /// <param name="merchant"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddGateway<T>(this IServiceCollection services, IMerchant merchant)
+            where T : BaseGateway
+        {
+            services.AddTransient<IGateway, T>(provider => (T)Activator.CreateInstance(typeof(T), provider, merchant));
             return services;
         }
     }

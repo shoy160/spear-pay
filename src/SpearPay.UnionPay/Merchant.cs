@@ -1,4 +1,5 @@
-﻿namespace SpearPay.UnionPay
+﻿
+namespace SpearPay.UnionPay
 {
     public class Merchant : IMerchant
     {

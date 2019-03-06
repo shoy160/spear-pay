@@ -17,7 +17,7 @@ namespace SpearPay.Gateway
 {
     /// <inheritdoc />
     /// <summary> 支付网关数据 </summary>
-    public class GatewayData : SortedDictionary<string, object>
+    public class RequestData : SortedDictionary<string, object>
     {
         /// <summary> 原始值 </summary>
         public string Raw { get; set; }
@@ -169,12 +169,23 @@ namespace SpearPay.Gateway
         /// 将网关数据转换为Url格式数据
         /// </summary>
         /// <param name="isUrlEncode">是否需要url编码</param>
+        /// <param name="filterEmpty"></param>
         /// <returns></returns>
-        public string ToUrl(bool isUrlEncode = true)
+        public string ToUrl(bool isUrlEncode = true, bool filterEmpty = false)
         {
-            return string.Join("&",
-                this.Select(a =>
-                    $"{a.Key}={(isUrlEncode ? WebUtility.UrlEncode(a.Value.ToString()) : a.Value.ToString())}"));
+            IEnumerable<string> arr;
+            if (filterEmpty)
+            {
+                arr = this.Where(t => t.Value != null && !string.IsNullOrWhiteSpace(t.Value.ToString())).Select(a =>
+                    $"{a.Key}={(isUrlEncode ? WebUtility.UrlEncode(a.Value.ToString()) : a.Value.ToString())}");
+            }
+            else
+            {
+                arr = this.Select(a =>
+                    $"{a.Key}={(isUrlEncode ? WebUtility.UrlEncode(a.Value.ToString()) : a.Value.ToString())}");
+            }
+
+            return string.Join("&", arr);
         }
 
         /// <summary>

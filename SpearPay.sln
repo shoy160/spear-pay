@@ -10,19 +10,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Solution Items", "00.Sol
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpearPay", "src\SpearPay\SpearPay.csproj", "{CB8F1296-E3C9-4A1C-915D-D583A0ED513F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpearPay", "src\SpearPay\SpearPay.csproj", "{CB8F1296-E3C9-4A1C-915D-D583A0ED513F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Platforms", "01.Platforms", "{C5FDB4C7-B264-43ED-9000-97B5DF8CD732}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Tests", "99.Tests", "{26A98873-9EAC-4585-BB9A-B4BF57E8FCD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpearPay.Alipay", "src\SpearPay.Alipay\SpearPay.Alipay.csproj", "{5750A9F0-C8A3-42C4-B80B-3B28359EABBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpearPay.Alipay", "src\SpearPay.Alipay\SpearPay.Alipay.csproj", "{5750A9F0-C8A3-42C4-B80B-3B28359EABBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpearPay.WechatPay", "src\SpearPay.WechatPay\SpearPay.WechatPay.csproj", "{A7702B72-9DDD-456B-BAA4-660F71F3F16D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpearPay.WechatPay", "src\SpearPay.WechatPay\SpearPay.WechatPay.csproj", "{A7702B72-9DDD-456B-BAA4-660F71F3F16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpearPay.UnionPay", "src\SpearPay.UnionPay\SpearPay.UnionPay.csproj", "{427681E8-C8C1-4F5F-A54C-993B3EAE903A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpearPay.UnionPay", "src\SpearPay.UnionPay\SpearPay.UnionPay.csproj", "{427681E8-C8C1-4F5F-A54C-993B3EAE903A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpearPay.Tests", "tests\SpearPay.Tests\SpearPay.Tests.csproj", "{ABEDC175-0D86-4788-B1B0-2AE9E98DC152}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpearPay.Tests", "tests\SpearPay.Tests\SpearPay.Tests.csproj", "{ABEDC175-0D86-4788-B1B0-2AE9E98DC152}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpearPay.AllinPay", "src\SpearPay.AllinPay\SpearPay.AllinPay.csproj", "{A8CAEE6F-5CC4-4DA7-B529-DE925CE60320}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpearPay.WebTest", "tests\SpearPay.WebTest\SpearPay.WebTest.csproj", "{B4457EB7-CCDC-4951-A583-99783C66E3B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +54,14 @@ Global
 		{ABEDC175-0D86-4788-B1B0-2AE9E98DC152}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABEDC175-0D86-4788-B1B0-2AE9E98DC152}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABEDC175-0D86-4788-B1B0-2AE9E98DC152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8CAEE6F-5CC4-4DA7-B529-DE925CE60320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8CAEE6F-5CC4-4DA7-B529-DE925CE60320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8CAEE6F-5CC4-4DA7-B529-DE925CE60320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8CAEE6F-5CC4-4DA7-B529-DE925CE60320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4457EB7-CCDC-4951-A583-99783C66E3B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4457EB7-CCDC-4951-A583-99783C66E3B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4457EB7-CCDC-4951-A583-99783C66E3B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4457EB7-CCDC-4951-A583-99783C66E3B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +71,8 @@ Global
 		{A7702B72-9DDD-456B-BAA4-660F71F3F16D} = {C5FDB4C7-B264-43ED-9000-97B5DF8CD732}
 		{427681E8-C8C1-4F5F-A54C-993B3EAE903A} = {C5FDB4C7-B264-43ED-9000-97B5DF8CD732}
 		{ABEDC175-0D86-4788-B1B0-2AE9E98DC152} = {26A98873-9EAC-4585-BB9A-B4BF57E8FCD8}
+		{A8CAEE6F-5CC4-4DA7-B529-DE925CE60320} = {C5FDB4C7-B264-43ED-9000-97B5DF8CD732}
+		{B4457EB7-CCDC-4951-A583-99783C66E3B8} = {26A98873-9EAC-4585-BB9A-B4BF57E8FCD8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97E6EFD0-86FA-4B3B-928B-61505F209AA7}
