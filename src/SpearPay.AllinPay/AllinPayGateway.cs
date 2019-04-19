@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SpearPay.AllinPay.Request;
 using SpearPay.AllinPay.Response;
+using SpearPay.Exception;
 using SpearPay.Gateway;
 using SpearPay.Helper;
 using System;
@@ -34,10 +35,10 @@ namespace SpearPay.AllinPay
             return signed;
         }
 
-        protected bool VerifySign(RequestData data, string sign, string key)
+        public override bool VerifySign(RequestData data, string sign)
         {
             data.Remove("sign");
-            data.Add("key", key);
+            data.Add("key", (Merchant as Merchant)?.Key);
             var unsigned = data.ToUrl(false, true);
             Logger.LogDebug($"unsigned:{unsigned}");
             var signed = EncryptHelper.Md5(unsigned);
@@ -90,7 +91,7 @@ namespace SpearPay.AllinPay
             var data = new RequestData();
             data.FromJson(result);
             if (!string.IsNullOrEmpty(sign) &&
-                !VerifySign(data, sign, (Merchant as Merchant)?.Key))
+                !VerifySign(data, sign))
             {
                 throw new SpearPayException("签名验证失败");
             }

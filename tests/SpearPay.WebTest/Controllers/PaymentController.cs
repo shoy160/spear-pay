@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text;
+using Microsoft.AspNetCore.Mvc;
 using SpearPay.AllinPay.Models;
 using SpearPay.AllinPay.Request;
 using System.Threading.Tasks;
+using Acb.Core.Extensions;
 
 namespace SpearPay.WebTest.Controllers
 {
@@ -24,10 +26,12 @@ namespace SpearPay.WebTest.Controllers
                 OrderId = orderNo,
                 ReturnUrl = "http://www.baidu.com",
                 GateId = bank,
+                GoodsId = "10001",
+                GoodsInfo = "招投标承保系统保费",
                 PayType = "B2B"
             });
             var result = await _gateway.Execute(request);
-            return Content(result.Html, "text/html");
+            return Content(result.Html, "text/html", Encoding.UTF8);
         }
     }
 }

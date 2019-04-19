@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using SpearPay.Exception;
 
 namespace SpearPay.Alipay
 {
@@ -29,7 +30,7 @@ namespace SpearPay.Alipay
         {
             request.Data.Add(Merchant, NamingCase.Snake);
 
-            
+
             if (!string.IsNullOrEmpty(request.NotifyUrl))
             {
                 request.Data.Add("notify_url", request.NotifyUrl);
@@ -67,7 +68,11 @@ namespace SpearPay.Alipay
             baseResponse.Sign = sign;
             baseResponse.Execute(_merchant, request);
             return (TResponse)(object)baseResponse;
+        }
 
+        public override bool VerifySign(RequestData data, string sign)
+        {
+            throw new NotImplementedException();
         }
 
         internal string BuildSign(RequestData data, string privatekey, string signType)

@@ -32,41 +32,24 @@ namespace SpearPay
 
         /// <summary> 添加Spear支付组件,并指定单个支付网关 </summary>
         /// <param name="services"></param>
-        /// <param name="gateway"></param>
+        /// <param name="implFunc"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSpearPay<T>(this IServiceCollection services, T gateway)
+        public static IServiceCollection AddSpearPay<T>(this IServiceCollection services, Func<IServiceProvider, T> implFunc)
             where T : class, IGateway
         {
             services.AddSpearPay();
-            services.AddTransient<IGateway, T>(provider => gateway);
+            services.AddTransient<IGateway, T>(implFunc);
             return services;
-        }
-
-
-        /// <summary> 添加Spear支付组件,并指定多个支付网关 </summary>
-        /// <param name="services"></param>
-        /// <param name="gateways"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddSpearPays<T>(this IServiceCollection services, params T[] gateways)
-            where T : class, IGateway
-        {
-            services.AddSpearPay();
-            foreach (var gateway in gateways)
-            {
-                services.AddTransient<IGateway, T>(provider => gateway);
-            }
-
-            return services;
-        }
+        } 
 
         /// <summary> 添加Spear支付组件,并指定单个支付网关 </summary>
         /// <param name="services"></param>
-        /// <param name="merchant"></param>
+        /// <param name="implFunc"></param>
         /// <returns></returns>
-        public static IServiceCollection AddGateway<T>(this IServiceCollection services, IMerchant merchant)
+        public static IServiceCollection AddGateway<T>(this IServiceCollection services, Func<IServiceProvider, T> implFunc)
             where T : BaseGateway
         {
-            services.AddTransient<IGateway, T>(provider => (T)Activator.CreateInstance(typeof(T), provider, merchant));
+            services.AddTransient(implFunc);
             return services;
         }
     }

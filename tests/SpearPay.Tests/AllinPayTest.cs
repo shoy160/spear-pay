@@ -26,7 +26,9 @@ namespace SpearPay.Tests
             {
                 Amount = 100,
                 OrderId = "D001",
-                ReturnUrl = "http://www.baidu.com"
+                ReturnUrl = "http://www.baidu.com",
+                GoodsId = "10001",
+                GoodsInfo = "招投标承保系统保费"
             });
             var resp = await gateway.Execute(request);
             Print(resp);

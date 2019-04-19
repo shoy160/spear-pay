@@ -42,5 +42,7 @@ namespace SpearPay.Gateway
             AddMerchantData(request);
             return InternalExecute(request);
         }
+
+        public abstract bool VerifySign(RequestData data, string sign);
     }
 }

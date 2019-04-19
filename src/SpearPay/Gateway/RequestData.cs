@@ -6,11 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Xml;
 
 namespace SpearPay.Gateway
@@ -19,6 +19,8 @@ namespace SpearPay.Gateway
     /// <summary> 支付网关数据 </summary>
     public class RequestData : SortedDictionary<string, object>
     {
+        public RequestData() : base(StringComparer.Ordinal) { }
+        public RequestData(IComparer<string> comparer) : base(comparer) { }
         /// <summary> 原始值 </summary>
         public string Raw { get; set; }
 
@@ -177,12 +179,12 @@ namespace SpearPay.Gateway
             if (filterEmpty)
             {
                 arr = this.Where(t => t.Value != null && !string.IsNullOrWhiteSpace(t.Value.ToString())).Select(a =>
-                    $"{a.Key}={(isUrlEncode ? WebUtility.UrlEncode(a.Value.ToString()) : a.Value.ToString())}");
+                    $"{a.Key}={(isUrlEncode ? HttpUtility.UrlEncode(a.Value.ToString(), Encoding.UTF8) : a.Value.ToString())}");
             }
             else
             {
                 arr = this.Select(a =>
-                    $"{a.Key}={(isUrlEncode ? WebUtility.UrlEncode(a.Value.ToString()) : a.Value.ToString())}");
+                    $"{a.Key}={(isUrlEncode ? HttpUtility.UrlEncode(a.Value.ToString(), Encoding.UTF8) : a.Value.ToString())}");
             }
 
             return string.Join("&", arr);
@@ -213,7 +215,7 @@ namespace SpearPay.Gateway
                 foreach (Match item in mc)
                 {
                     var value = item.Result("$3");
-                    Add(item.Result("$2"), isUrlDecode ? WebUtility.UrlDecode(value) : value);
+                    Add(item.Result("$2"), isUrlDecode ? HttpUtility.UrlDecode(value, Encoding.UTF8) : value);
                 }
             }
             finally
@@ -267,8 +269,10 @@ namespace SpearPay.Gateway
             html.AppendLine($"<form name='gateway' method='post' action ='{url}'>");
             foreach (var item in this)
             {
-                html.AppendLine($"<input type='hidden' name='{item.Key}' value='{item.Value}'>");
+                html.AppendLine(
+                    $"<input type='hidden' name='{item.Key}' value='{item.Value}'>");
             }
+
             html.AppendLine("</form>");
             html.AppendLine("<script language='javascript' type='text/javascript'>");
             html.AppendLine("document.gateway.submit();");

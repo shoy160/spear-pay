@@ -16,7 +16,7 @@ namespace SpearPay.AllinPay.Models
         public string ReturnUrl { get; set; }
 
         /// <summary> 商品号 </summary>
-        [Naming("goodid")]
+        [Naming("goodsid")]
         public string GoodsId { get; set; }
 
         /// <summary> 商品描述信息 </summary>

@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace SpearPay
+﻿namespace SpearPay.Exception
 {
-    public class SpearPayException : Exception
+    public class SpearPayException : System.Exception
     {
         public SpearPayException(string message)
             : base(message)

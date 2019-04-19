@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpearPay.Gateway;
+using System;
 using System.Threading.Tasks;
 
 namespace SpearPay
@@ -14,5 +15,7 @@ namespace SpearPay
         Task<TResponse> Execute<TResponse, TModel>(IRequest<TModel, TResponse> request)
             where TResponse : IResponse
             where TModel : IModel;
+
+        bool VerifySign(RequestData data, string sign);
     }
 }
